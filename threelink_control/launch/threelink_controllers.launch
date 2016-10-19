@@ -1,0 +1,40 @@
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find threelink_control)/config/threelink_control.yaml" 
+    command="load"/>
+
+  <!-- Load the controllers 
+  Note that the joint state controller is necessary for publishing 
+  to /tf rviz etc!-->
+  <node 
+    name="controller_spawner" pkg="controller_manager" type="spawner" 
+    respawn="false" output="screen" ns="/threelink" args="
+    joint_state_controller
+    joint_1_effort_controller 
+    joint_2_effort_controller
+    joint_3_effort_controller 
+    "/>
+
+    <!-- Load the controllers 
+  Note that the joint state controller is necessary for publishing 
+  to /tf rviz etc!>
+  <node 
+    name="controller_spawner" pkg="controller_manager" type="spawner" 
+    respawn="false" output="screen" ns="/threelink" args="
+    joint_state_controller
+    joint_1_position_controller 
+    joint_2_position_controller 
+    "/-->
+
+  <!-- convert joint states to TF transforms for rviz, etc 
+  Note that we use a namespace for the state publisher and 
+  a remapping -->
+  <node 
+    name="robot_state_publisher" pkg="robot_state_publisher" 
+    type="robot_state_publisher" ns="/threelink"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/threelink/joint_states" />
+  </node>
+ 
+</launch>
