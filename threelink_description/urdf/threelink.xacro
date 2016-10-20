@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<!-- UNIMATE Puma 560 Manipulator -->
+<!-- Threelink model -->
 <robot name="threelink" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- Some constants -->
@@ -96,12 +96,13 @@
 
           <parent link="world"/>
           <child link="link_1"/>
-          <origin xyz="0 0 ${2 * length}" rpy="0 0 0" />
+          <origin xyz="0 0 ${3 * length}" rpy="0 0 0" />
           <axis xyz="1 0 0" />
           <dynamics damping="50.0"/>
           <dynamics friction="0.0"/>
           <dynamics spring_reference="0.0"/>
           <dynamics spring_stiffness="10.0"/>
+          
         </joint>
 
         <joint name="joint_2" type="continuous">
@@ -110,7 +111,10 @@
           <child link="link_2"/>
           <origin xyz="0 0 ${- length}" rpy="0 0 0" />
           <axis xyz="1 0 0" />
-          <dynamics damping="50.0" spring_stiffness="200.0" />
+          <dynamics damping="50.0"/>
+          <dynamics friction="0.0"/>
+          <dynamics spring_reference="0.0"/>
+          <dynamics spring_stiffness="10.0"/>
 
         </joint>
 
@@ -120,7 +124,10 @@
           <child link="link_3"/>
           <origin xyz="0 0 ${- length}" rpy="0 0 0" />
           <axis xyz="1 0 0" />
-          <dynamics damping="50.0" spring_stiffness="200.0" />
+          <dynamics damping="50.0"/>
+          <dynamics friction="0.0"/>
+          <dynamics spring_reference="0.0"/>
+          <dynamics spring_stiffness="10.0"/>
 
         </joint>
 

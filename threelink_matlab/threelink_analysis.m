@@ -23,11 +23,11 @@ solversettings.t_sample = 0.0005;
 solversettings.rel_tol = 1e-7;
 solversettings.abs_tol = 1e-7;
 
-save('settings.mat','solversettings')
+save('solversettings.mat','solversettings')
 
 %%
 
-load('settings.mat')
+load('solversettings.mat')
 open('threelink_simulink_analysis')
 sim('threelink_simulink_analysis')
 
